@@ -4,11 +4,7 @@ const SET_USERS = "SET_USERS";
 
 
 const initialState = {
-    users: [
-        {id:1, name: 'Kate', status: 'I am the most kind girl in the World!', followed:true},
-        {id:2, name: 'Masha', status: 'Hello how are you?', followed:false},
-        {id:3, name: 'Jack', status: 'Frontend Dev is my future!', followed:true},
-    ]
+    users: [],
 }
 
 const usersReducer = (state=initialState, action)=> {
