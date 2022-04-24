@@ -1,0 +1,22 @@
+.post {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.ava img{
+    height: 70px;
+    width: 70px;
+    border-radius: 35px;
+    margin-left: 20px;
+}
+
+.post_text {
+    margin-left: 50px;
+    border: solid 15px aliceblue;
+    border-radius: 10px;
+    background-color: aliceblue;
+    color: darkslateblue;
+    font-family: fantasy;
+    font-weight: bolder;
+}

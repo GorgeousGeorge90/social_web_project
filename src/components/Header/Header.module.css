@@ -1,0 +1,38 @@
+.header {
+    grid-area: header;
+    background-color: darkslateblue;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.logo {
+    margin-left: 50px;
+}
+
+.logo img {
+    width: 110px;
+    height: 110px;
+}
+
+.title {
+    margin-left: 100px;
+}
+
+.title h1{
+    font-family: 'My Soul', cursive;
+    font-size: 2.8em;
+    color: gainsboro;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.title p {
+    font-family: 'My Soul', cursive;
+    font-size: 1.7em;
+    color: gainsboro;
+    margin-top: 0;
+}
+
+
+

@@ -1,0 +1,26 @@
+nav {
+    background-color: darkslateblue;
+    border-radius: 10px;
+}
+
+.items_list {
+    font-size: 1.5em;
+    margin-left: 15px;
+}
+
+.item {
+    list-style: none;
+    font-family: 'Merienda', cursive;
+    padding-top: 10px;
+}
+
+.item  a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.item a:hover {
+    color: dodgerblue;
+}
+
+

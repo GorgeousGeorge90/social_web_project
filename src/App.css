@@ -1,0 +1,11 @@
+.app-container {
+    display: grid;
+    grid-template-areas:'header header header' 'nav main sidebar';
+    grid-template-rows:  200px 1fr;
+    grid-template-columns: 200px 1fr 200px ;
+    grid-gap: 10px;
+    width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+}
+

@@ -1,0 +1,27 @@
+.userStyle {
+    display: flex;
+}
+
+.logo {
+  align-items: center;
+}
+
+.logo img {
+    height: 100px;
+}
+
+.info {
+    margin-left: 100px;
+    font-family: fantasy;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: aliceblue;
+    height: 100px;
+    width: 250px;
+    border: none;
+}
+
+.name {
+    font-weight: bolder;
+    font-size: 1.2em;
+}

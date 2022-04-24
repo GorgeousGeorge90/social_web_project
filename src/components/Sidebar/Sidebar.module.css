@@ -1,0 +1,5 @@
+.sidebar {
+    background-color: darkslateblue;
+    grid-area: sidebar;
+    border-radius: 10px;
+}

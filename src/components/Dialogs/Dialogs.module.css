@@ -1,0 +1,22 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+}
+
+.dialogsItem {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.personItem {
+    list-style: none;
+}
+
+.messages {
+    font-size: 1.1em;
+    color: #000;
+}
+
+.textItem {
+    list-style: none;
+}

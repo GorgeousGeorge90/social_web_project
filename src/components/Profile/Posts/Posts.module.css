@@ -1,0 +1,17 @@
+.posted {
+    display: flex;
+    flex-direction: column;
+}
+.posted textarea {
+    width: 700px;
+    height: 40px;
+    resize: none;
+    margin: 50px auto 0 auto;
+}
+
+.posted button {
+    width: 60px;
+    height: 25px;
+    margin-left: 680px;
+
+}
