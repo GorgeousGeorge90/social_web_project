@@ -5,9 +5,12 @@ import {Route, Routes} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Sidebar from "./components/Sidebar/Sidebar";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileC";
+
+
+
 
 
 

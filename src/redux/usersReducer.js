@@ -1,10 +1,19 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
+const SET_TOGGLE_FETCHING = "SET_TOGGLE_FETCHING";
+
+
 
 
 const initialState = {
     users: [],
+    totalCount: 0,
+    pageSize:100,
+    currentPage: 1,
+    isFetching: false,
 }
 
 const usersReducer = (state=initialState, action)=> {
@@ -13,7 +22,7 @@ const usersReducer = (state=initialState, action)=> {
             return {
                 ...state,
                 users: state.users.map(u=> {
-                    if (u.id === action.userId) {
+                    if (u.id === action.payload) {
                         return {...u, followed: true}
                         }
                     return u
@@ -24,7 +33,7 @@ const usersReducer = (state=initialState, action)=> {
             return {
                 ...state,
                 users: state.users.map(u=>{
-                    if (u.id === action.userId) {
+                    if (u.id === action.payload) {
                         return {...u, followed: false}
                         }
                     return u
@@ -35,33 +44,77 @@ const usersReducer = (state=initialState, action)=> {
         case SET_USERS: {
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.payload,
             }
         }
+
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                currentPage: action.payload,
+            }
+        }
+
+        case SET_TOTAL_COUNT: {
+            return {
+                ...state,
+                totalCount: action.payload
+            }
+        }
+
+        case SET_TOGGLE_FETCHING: {
+            return {
+                ...state,
+                isFetching: action.payload
+            }
+        }
+
         default:
             return state
     }
 }
 
-export const followActionCreator = (userId) => {
+export let follow = (userId) => {
     return {
         type: FOLLOW,
-        userId: userId,
+        payload: userId,
     }
 }
 
-export const unfollowActionCreator = (userId) => {
+export let unfollow = (userId) => {
     return {
         type: UNFOLLOW,
-        userId: userId,
+        payload: userId,
     }
 }
 
-export const setUsersActionCreater = (users)=>{
+export let setUsers = (users)=>{
     return {
         type: SET_USERS,
-        users: users,
+        payload: users,
     }
 }
+
+export let setCurrentPage = (page)=> {
+    return {
+        type: SET_CURRENT_PAGE,
+        payload: page,
+    }
+}
+
+export let setTotalCount = (total)=>{
+    return {
+        type: SET_TOTAL_COUNT,
+        payload: total,
+    }
+}
+
+export let setToggleIsFetching = (isFetching)=> {
+    return {
+        type: SET_TOGGLE_FETCHING,
+        payload: isFetching,
+    }
+}
+
 
 export default usersReducer
