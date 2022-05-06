@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {
-    follow,
+    follow, getUsersThunkCreator,
     setCurrentPage,
     setToggleIsFetching,
     setTotalCount,
@@ -8,32 +8,20 @@ import {
     unfollow
 } from "../../redux/usersReducer";
 import React from "react";
-import * as axios from "axios";
 import Users from "./UsersC";
 import Preloader from "../common /Preloader/Preloader";
 
 
 
 class UsersContainerAPI extends React.Component {
+
     componentDidMount() {
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+        }
 
-            this.props.setToggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setToggleIsFetching(false)
-            this.props.setUsers(response.data.items)
-            this.props.setTotalCount(response.data.totalCount)
-        })
-
-    }
-
-    onChangePage = (page)=> {
-        this.props.setToggleIsFetching(true)
-        this.props.setCurrentPage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setToggleIsFetching(false)
-        })
-    }
+        onChangePage = (pageNumber)=>{
+            this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
+        }
 
     render() {
         return (
@@ -61,8 +49,10 @@ const mapStateToProps = (state)=> {
     }
 }
 
+
+
 const usersContainer = connect(mapStateToProps,{
-    follow, unfollow, setUsers, setCurrentPage, setTotalCount, setToggleIsFetching,}
+    follow, unfollow, setUsers, setCurrentPage, setTotalCount, setToggleIsFetching,getUsersThunkCreator}
 )(UsersContainerAPI)
 
 export default usersContainer

@@ -1,8 +1,8 @@
-import styles from './Posts.module.css'
 import Post from "./Post /Post";
 import React from "react";
+import {Field, reduxForm} from "redux-form";
 import {useDispatch, useSelector} from "react-redux";
-import {addPost, updatePost} from "../../../redux/profileReducer";
+import {addPost} from "../../../redux/profileReducer";
 
 
 
@@ -14,18 +14,12 @@ const Posts = ()=> {
     // ]
 
     const posts = useSelector(state=>state.profilePage.posts)
-    const newPostText = useSelector(state=>state.profilePage.newPostText)
     const dispatch = useDispatch();
 
-    let addNewPost = React.createRef();
 
-
-    let changePost = ()=> {
-        let text = addNewPost.current.value;
-        dispatch(updatePost(text))
+    const newPost = (value)=>{
+        dispatch(addPost(value.newPost))
     }
-
-
 
     // let addPost = ()=> {
     //     alert('Hello World!')
@@ -34,14 +28,22 @@ const Posts = ()=> {
 
     return (
         <div>
-                <form className={styles.posted}>
-                    <textarea  ref={addNewPost}  value={newPostText} onChange={changePost} placeholder='Typing...'/>
-                    <button onClick={()=>dispatch(addPost())}>Push</button>
-                </form>
+                <ReduxPostForm onSubmit={newPost}/>
             {posts.map(post=> <Post text={post.text}/>)}
         </div>
     )
 }
 
+
+const PostsForm = (props)=> {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component='textarea' name='newPost' placeholder='typing...' />
+            <button>Push</button>
+        </form>
+    )
+}
+
+const ReduxPostForm = reduxForm({form:'newPost'})(PostsForm)
 
 export default Posts

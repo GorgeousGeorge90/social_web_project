@@ -1,5 +1,8 @@
 import styles from './Dialogs.module.css'
 import React from "react";
+import {useNavigate} from "react-router-dom"
+import {Field, reduxForm} from "redux-form";
+import handleSubmit from "redux-form/lib/handleSubmit";
 
 const dialogs = [
     { id:0, name:'Egor'},
@@ -22,17 +25,21 @@ const dialogs = [
 
 const Dialogs = (props)=> {
 
-    const newMessage = React.createRef()
+    // let navigate = useNavigate()
 
-    let addCoolMessage = ()=> {
-        let message = newMessage.current.value;
-        props.addMessage(message)
+
+
+    const addNewMessage = (values)=> {
+        props.addMessage(values.newMessage)
     }
-
 
     const messages = props.dialogsPage.messages
 
+     // if (!props.isAuth) {
+     //     navigate("/login")
+     // }
     return (
+
         <div className={styles.dialogs}>
             <div className={styles.dialogsItem}>
                 <ul>
@@ -45,14 +52,23 @@ const Dialogs = (props)=> {
                 </ul>
             </div>
             <div>
-                <form>
-                    <textarea ref={newMessage}/>
-                    <button onClick={addCoolMessage}>Send</button>
-                </form>
+                <ReduxDialogsForm onSubmit={addNewMessage}/>
             </div>
         </div>
     )
 }
 
-
 export default Dialogs
+
+
+const DialogsForm = (props)=>{
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component='textarea' placeholder='typing...' name='newMessage' />
+            <button>Send</button>
+        </form>
+    )
+}
+
+
+const ReduxDialogsForm = reduxForm({form:'newMessage'})(DialogsForm)

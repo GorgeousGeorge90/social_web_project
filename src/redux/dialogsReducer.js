@@ -16,7 +16,7 @@ const dialogsReducer = (state = initialState, action)=> {
         case ADD_MESSAGE:{
             return {
                 ...state,
-                messages: [...state.messages, {id:6,text:action.body}]
+                messages: [...state.messages, {id:6,text:action.payload}]
             }
         }
         default:
@@ -24,9 +24,9 @@ const dialogsReducer = (state = initialState, action)=> {
     }
 }
 
-export let addMessageActionCreater = (message) => ({
+export let addMessage = (message) => ({
     type: ADD_MESSAGE,
-    body: message,
+    payload: message,
 })
 
 

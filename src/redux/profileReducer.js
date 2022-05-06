@@ -1,5 +1,4 @@
 const ADD_POST = 'ADD_POST';
-const UPDATE_POST = 'UPDATE_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 
@@ -9,24 +8,16 @@ let initialState = {
             {id: 0, text: 'Oh! This is my first post!'},
             {id: 1, text: 'I want to become a Software Engineer'},
         ],
-        newPostText: '',
         profile: null,
     }
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case UPDATE_POST: {
-            return {
-                ...state,
-                newPostText: action.payload,
-            }
-        }
-
         case ADD_POST: {
             let newPost = {
                 id:state.posts.length,
-                text: state.newPostText,
+                text: action.payload
             }
             return {
                 ...state,
@@ -48,15 +39,9 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export let addPost = ()=>{
+export let addPost = (text)=>{
     return {
         type: ADD_POST,
-    }
-}
-
-export let updatePost = (text)=>{
-    return {
-        type: UPDATE_POST,
         payload: text,
     }
 }

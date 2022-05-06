@@ -11,7 +11,7 @@ const Nav = ()=>{
     return (
         <nav>
             <ul className={styles.items_list}>
-                <li className={styles.item} ><NavLink to={'/'} style={active}>Profile</NavLink></li>
+                <li className={styles.item} ><NavLink to={'/profile'} style={active}>Profile</NavLink></li>
                 <li className={styles.item} ><NavLink to={'/dialogs'} style={active}>Dialogs</NavLink></li>
                 <li className={styles.item} ><NavLink to={'/users'} style={active}>Users</NavLink></li>
                 <li className={styles.item} ><NavLink to={'/music'} style={active}>Music</NavLink></li>

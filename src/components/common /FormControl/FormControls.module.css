@@ -1,0 +1,5 @@
+.formControl.error input,
+.formControl.error textarea {
+    border: solid 1px red;
+    border-radius: 2px;
+}

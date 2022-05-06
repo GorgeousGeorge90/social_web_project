@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
@@ -115,6 +117,21 @@ export let setToggleIsFetching = (isFetching)=> {
         payload: isFetching,
     }
 }
+
+
+export const getUsersThunkCreator = (currentPage,pageSize)=> {
+    return (dispatch) => {
+        dispatch(setToggleIsFetching(true))
+            usersAPI.getUsers(currentPage, pageSize)
+                .then(response => {
+                    dispatch(setToggleIsFetching(false))
+                    dispatch(setUsers(response.items))
+                    dispatch(setTotalCount(response.totalCount))
+                })
+    }
+}
+
+
 
 
 export default usersReducer

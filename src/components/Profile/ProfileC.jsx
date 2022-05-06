@@ -1,30 +1,30 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Profile from "./Profile";
-import * as axios from "axios";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/profileReducer";
+import {useParams} from "react-router-dom";
+import {authAPI} from "../../api/api";
 
 
-class ProfileContainerAPI extends React.Component {
 
-    componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/profile/2").then(response=>{
-            this.props.setUserProfile(response.data)
+const ProfileContainerSide = (props)=> {
+    const {userId} = useParams();
+    useEffect(()=>{
+        authAPI.getUser(userId).then(response=>{
+            props.setUserProfile(response.data)
         })
-    }
+    },)
 
-    render() {
-debugger;
         return (
-            <Profile profile={this.props.profile}/>
+            <Profile profile={props.profile}/>
         )
-    }
+
 }
 
 let mapStateToProps = (state)=>({
     profile: state.profilePage.profile
 })
 
-const ProfileContainer = connect(mapStateToProps,{setUserProfile})(ProfileContainerAPI)
+const ProfileContainer = connect(mapStateToProps,{setUserProfile})(ProfileContainerSide)
 export default ProfileContainer
 
